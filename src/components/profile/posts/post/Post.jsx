@@ -4,7 +4,7 @@ import css from './Post.module.css';
 const Post = (props) => {
     return (
         <div className={css.content}>
-            {props.message}
+            {props.message}, likes: {props.likesCount}
         </div>
     );
 };

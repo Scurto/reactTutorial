@@ -30,15 +30,20 @@ import News from "./components/news/News";
 //   );
 // }
 
-const App = () => {
+const App = (props) => {
+
+    // debugger;
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header></Header>
                 <Navigation/>
-                <Route path='/profile/' component={Profile}/>
+                {/*<Route path='/profile/' component={Profile}/>*/}
                 {/*<Route exact path='/dialogs/' component={Dialogs}/>*/}
-                <Route path='/dialogs/' component={Dialogs}/>
+                {/*<Route path='/dialogs/' component={Dialogs}/>*/}
+                <Route path='/profile/' render={() => <Profile posts={props.posts}/>}/>
+                <Route path='/dialogs/' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                 <Route path='/news/' component={News}/>
                 <Footer></Footer>
             </div>
