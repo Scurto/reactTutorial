@@ -10,15 +10,22 @@ const Posts = (props) => {
         );
     });
 
+    let newPostRef = React.createRef();
+
+    let addPostClick = () => {
+        props.addPost(newPostRef.current.value);
+        newPostRef.current.value = '';
+    };
+
     return (
         <div className={css.content}>
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostRef}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPostClick}>Add post</button>
                 </div>
             </div>
             <div className={css.posts}>
