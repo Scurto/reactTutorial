@@ -14,12 +14,19 @@ const Posts = (props) => {
 
     let addPostClick = () => {
         // let text = newPostRef.current.value;
-        props.addPost();
+        let action = {
+            type: 'ADD-POST'
+        }
+        props.dispatch(action);
     };
 
     let onPostChange = () => {
         let text = newPostRef.current.value;
-        props.updateNewPostText(text);
+        let action = {
+            type: 'UPDATE-NEW-POST-TEXT',
+            newText: text
+        }
+        props.dispatch(action);
     };
 
     return (
