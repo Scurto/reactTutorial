@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
     _state: {
@@ -8,7 +10,7 @@ let store = {
                 {id: 1, message: "Message1", likesCount: 11},
                 {id: 2, message: "Message2", likesCount: 12}
             ],
-            newPostText: 'newPostText'
+            newPostText: ''
         },
         dialogsPage: {
             messagesData: [
@@ -24,27 +26,13 @@ let store = {
                 {id: 3, name: "Name3"},
                 {id: 4, name: "Name4"},
                 {id: 5, name: "Name5"}
-            ]
+            ],
+            newMessageText: ''
         }
     },
     getState() {
         return this._state;
     },
-    // addPost() {
-    //     let newPost = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 0
-    //     };
-    //
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = '';
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewPostText(newText) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._callSubscriber(this._state);
-    // },
     dispatch(action) {
         if (action.type === ADD_POST) {
             let newPost = {
@@ -59,6 +47,15 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
+        } else if (action.type === ADD_MESSAGE) {
+            let newMessage = {id: 6, message: this._state.dialogsPage.newMessageText};
+            this._state.dialogsPage.newMessageText = '';
+            this._state.dialogsPage.messagesData.push(newMessage);
+
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.newText;
+            this._callSubscriber(this._state);
         }
     },
     subscribe(observer) {
@@ -69,15 +66,28 @@ let store = {
     }
 }
 
-export let addPostActionCreator = () => {
+export let addPostCreator = () => {
     return {
         type: ADD_POST
     }
 }
 
-export let updateNewPostTextActionCreator = (text) => {
+export let updateNewPostTextCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
+export let addMessageCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export let updateNewMessageTextCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
         newText: text
     }
 }
