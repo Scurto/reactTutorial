@@ -27,6 +27,9 @@ const Navigation = () => {
             <div className={css.item}>
                 <NavLink to="/news" activeClassName={css.activeLink}>News</NavLink>
             </div>
+            <div className={css.item}>
+                <NavLink to="/users" activeClassName={css.activeLink}>Users</NavLink>
+            </div>
         </div>
     );
 };
