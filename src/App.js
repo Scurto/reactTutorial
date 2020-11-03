@@ -8,7 +8,7 @@ import {Route} from "react-router-dom";
 import News from "./components/news/News";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import PostsContainer from "./components/profile/posts/PostsContainer";
-import Users from "./components/users/Users";
+import UsersOld from "./components/users/UsersOld";
 import UsersContainer from "./components/users/UsersContainer";
 
 const App = (props) => {

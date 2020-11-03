@@ -1,37 +1,36 @@
 import css from "../users/Users.module.css";
+import * as axios from 'axios';
+import * as React from "react";
 
-import React from "react";
+class Users extends React.Component {
 
-const Users = (props) => {
-
-    if (props.usersPage.users.length === 0) {
-        props.setUsers([
-            {id: 1, photoURL: '', followed: false, fullName: 'User1', status: 'status1'},
-            {id: 2, photoURL: '', followed: false, fullName: 'User2', status: 'status2'},
-            {id: 3, photoURL: '', followed: false, fullName: 'User3', status: 'status3'},
-            {id: 4, photoURL: '', followed: false, fullName: 'User4', status: 'status4'}
-        ]);
+    constructor(props) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(resp => {
+            props.setUsers(resp.data.items);
+        })
     }
 
-    return <div>
-        {
-            props.usersPage.users.map(u => <div key={u.id}>
-                    <div>
-                        {u.fullName}
-                    </div>
-                    <div>
-                        {u.status}
-                    </div>
-                    <div>
-                        {u.followed ? <button onClick={() => props.unfollow(u.id)}>UnFollow</button> : <button onClick={() => props.follow(u.id)}>Follow</button>}
+    render() {
+        return <div>
+            {
+                this.props.usersPage.users.map(u => <div key={u.id}>
+                        <div>
+                            {u.name}
+                        </div>
+                        <div>
+                            {u.status}
+                        </div>
+                        <div>
+                            {u.followed ? <button onClick={() => this.props.unfollow(u.id)}>UnFollow</button> : <button onClick={() => this.props.follow(u.id)}>Follow</button>}
 
-                        {/*<button onClick={() => console.log(u.id)}>Follow</button>*/}
+                            {/*<button onClick={() => console.log(u.id)}>Follow</button>*/}
+                        </div>
                     </div>
-                </div>
-            )
-        }
-    </div>
-
-};
+                )
+            }
+        </div>
+    }
+}
 
 export default Users;
