@@ -7,7 +7,7 @@ import Navigation from './components/nav/Navigation';
 import {Route} from "react-router-dom";
 import News from "./components/news/News";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
-import PostsContainer from "./components/profile/posts/PostsContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 import UsersContainer from "./components/users/UsersContainer";
 
 const App = (props) => {
@@ -18,11 +18,12 @@ const App = (props) => {
             {/*<Route path='/profile/' component={Profile}/>*/}
             {/*<Route exact path='/dialogs/' component={Dialogs}/>*/}
             {/*<Route path='/dialogs/' component={Dialogs}/>*/}
-            <Route path='/profile/' render={
-                () => <PostsContainer />
-            }/>
+
             <Route path='/dialogs/' render = {
                 () => <DialogsContainer />
+            }/>
+            <Route path='/profile/' render={
+                () => <ProfileContainer />
             }/>
             <Route path='/users/' render = {
                 () => <UsersContainer />
