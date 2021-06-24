@@ -1,3 +1,7 @@
+https://social-network.samuraijs.com/login
+yokef52217@sofiarae.com
+test12345678
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

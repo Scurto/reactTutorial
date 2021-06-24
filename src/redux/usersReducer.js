@@ -1,16 +1,20 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const SET_FETCHING = 'SET_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initState = {
     users: [],
-    pageSize: 15,
-    totalUsersCount: 20,
+    pageSize: 5,
+    totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: true,
+    followingInProgress: []
 }
 
 const usersReducer = (state = initState, action) => {
@@ -62,6 +66,14 @@ const usersReducer = (state = initState, action) => {
             return newState;
             break;
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.userId]
+                                                       : state.followingInProgress.filter(id => id != action.userId)
+            }
+        }
+
         default:
             return state;
     }
@@ -108,6 +120,24 @@ export let setFetching = (isFetching) => {
     }
 }
 
+export let toggleIsFollowingInProgress = (isFetching, userId) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING_PROGRESS,
+        isFetching: isFetching,
+        userId: userId
+    }
+}
 
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+      dispatch(setFetching(true));
+
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(resp => {
+          this.props.setFetching(false);
+          this.props.setUsers(resp.items);
+          this.props.setTotalUsersCount(resp.totalCount)
+      })
+  }
+}
 
 export default usersReducer;

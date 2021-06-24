@@ -35,18 +35,23 @@ let Users = (props) => {
                         {u.status}
                     </div>
                     <div>
-                        {u.followed ? <button onClick={() => {
+                        {u.followed ? <button disabled={props.followingInProgress.some(id => id===u.id)} onClick={() => {
+
+                                props.toggleIsFollowingInProgress(true, u.id);
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + u.id, {withCredentials: true, headers: {'API-KEY' : '382354d6-c04e-478a-b623-652838360af2'}}).then(resp => {
                                     if (resp.data.resultCode === 0) {
                                         props.unfollow(u.id);
                                     }
+                                    props.toggleIsFollowingInProgress(false, u.id);
                                 });
                             }}>UnFollow</button> :
-                            <button onClick={() => {
+                            <button disabled={props.followingInProgress.some(id => id===u.id)} onClick={() => {
+                                props.toggleIsFollowingInProgress(true, u.id);
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + u.id, null, {withCredentials: true, headers: {'API-KEY' : '382354d6-c04e-478a-b623-652838360af2'}}).then(resp => {
                                     if (resp.data.resultCode === 0) {
                                         props.follow(u.id);
                                     }
+                                    props.toggleIsFollowingInProgress(false, u.id);
                                 });
                             }
                                 // 382354d6-c04e-478a-b623-652838360af2
