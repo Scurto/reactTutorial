@@ -79,14 +79,14 @@ const usersReducer = (state = initState, action) => {
     }
 }
 
-export let follow = (id) => {
+export let followSuccess = (id) => {
     return {
         type: FOLLOW,
         id: id
     }
 }
 
-export let unfollow = (id) => {
+export let unFollowSuccess = (id) => {
     return {
         type: UNFOLLOW,
         id: id
@@ -132,12 +132,36 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
   return (dispatch) => {
       dispatch(setFetching(true));
 
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(resp => {
-          this.props.setFetching(false);
-          this.props.setUsers(resp.items);
-          this.props.setTotalUsersCount(resp.totalCount)
+      usersAPI.getUsers(currentPage, pageSize).then(resp => {
+          dispatch(setFetching(false));
+          dispatch(setUsers(resp.items));
+          dispatch(setTotalUsersCount(resp.totalCount));
       })
   }
+}
+
+export const followThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingInProgress(true, userId));
+        usersAPI.follow(userId).then(resp => {
+            if (resp.data.resultCode === 0) {
+                dispatch(followSuccess(userId));
+            }
+            dispatch(toggleIsFollowingInProgress(false, userId));
+        })
+    }
+}
+
+export const unFollowThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingInProgress(true, userId));
+        usersAPI.unFollow(userId).then(resp => {
+            if (resp.data.resultCode === 0) {
+                dispatch(unFollowSuccess(userId));
+            }
+            dispatch(toggleIsFollowingInProgress(false, userId));
+        })
+    }
 }
 
 export default usersReducer;
