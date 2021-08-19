@@ -5,11 +5,12 @@ import './App.css';
 import Footer from './components/footer/Footer';
 import Navigation from './components/nav/Navigation';
 import {Route} from "react-router-dom";
-import News from "./components/news/News";
+import Login from "./components/news/Login";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
+import LoginContainer from "./components/news/LoginContainer";
 
 const App = (props) => {
     return (
@@ -29,7 +30,10 @@ const App = (props) => {
             <Route path='/users/' render = {
                 () => <UsersContainer />
             }/>
-            <Route path='/news/' component={News}/>
+            <Route path='/login' render = {
+                () => <LoginContainer />
+            }/>
+            <Route path='/news/' component={Login}/>
             <Footer></Footer>
         </div>
     );
