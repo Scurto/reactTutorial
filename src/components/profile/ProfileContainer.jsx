@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import css from './Profile.module.css';
 import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profileReducer";
-import withRouter from "react-router-dom/es/withRouter";
-import {Redirect} from "react-router-dom";
+
+import {Redirect, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import Dialogs from "../dialogs/Dialogs";

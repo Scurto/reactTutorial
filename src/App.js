@@ -5,12 +5,12 @@ import './App.css';
 import Footer from './components/footer/Footer';
 import Navigation from './components/nav/Navigation';
 import {Route} from "react-router-dom";
-import Login from "./components/news/Login";
+import Login from "./components/login/Login";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import LoginContainer from "./components/news/LoginContainer";
+import LoginContainer from "./components/login/LoginContainer";
 
 const App = (props) => {
     return (

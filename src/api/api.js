@@ -54,7 +54,13 @@ export const profileAPI = {
         // "asdasd"
     },
     updateStatus(status) {
-        return instance.put(baseUrl + `/profile/status`, {status: status});
+        if (evn === 'LOCAL') {
+            // return axios.put(baseUrlJava + `/profile/status`, {status: status});
+            return axios.put(baseUrlJava + `/profile/status`, {status: status});
+        } else {
+            return instance.put(baseUrl + `/profile/status`, {status: status});
+        }
+
         // {"data":{},"messages":[],"fieldsErrors":[],"resultCode":0}
     }
 }

@@ -8,7 +8,7 @@ const Posts = (props) => {
 
     let postsItem = state.posts.map(value => {
         return (
-            <Post message={value.message} likesCount={value.likesCount}/>
+            <Post key={value.message} message={value.message} likesCount={value.likesCount}/>
         );
     });
 
