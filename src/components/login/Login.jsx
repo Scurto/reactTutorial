@@ -4,10 +4,14 @@ import {Field, reduxForm} from "redux-form";
 
 
 const Login = (props) => {
+    const onSubmit = (formData) => {
+        console.log(formData);
+    }
+
     return (
         <div className={css.content}>
             <h1>Login</h1>
-            <LoginReduxForm></LoginReduxForm>
+            <LoginReduxForm onSubmit={ onSubmit }></LoginReduxForm>
         </div>
     );
 };
