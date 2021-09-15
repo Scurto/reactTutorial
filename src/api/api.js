@@ -73,5 +73,19 @@ export const authAPI = {
             return instance.get(baseUrl + `/auth/me`);
         }
         // {"data":{"id":13976,"login":"test12345678","email":"yokef52217@sofiarae.com"},"messages":[],"fieldsErrors":[],"resultCode":0}
+    },
+    login(email, password, rememberMe = false) {
+        if (evn === 'LOCAL') {
+            return axios.post(baseUrlJava + `/auth/login`, {email, password, rememberMe});
+        } else {
+            return instance.post(baseUrl + `/auth/login`, {email, password, rememberMe});
+        }
+    },
+    logout() {
+        // if (evn === 'LOCAL') {
+        //     return axios.delete(baseUrlJava + `/auth/login`);
+        // } else {
+            return instance.delete(baseUrl + `/auth/login`);
+        // }
     }
 }
