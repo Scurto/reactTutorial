@@ -3,11 +3,9 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import css from './Profile.module.css';
 import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profileReducer";
-
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-import Dialogs from "../dialogs/Dialogs";
 
 class ProfileContainer extends React.Component {
 
@@ -18,7 +16,10 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = this.props.authorizedUserId
+            userId = this.props.authorizedUserId;
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
 
         this.props.getUserProfile(userId);

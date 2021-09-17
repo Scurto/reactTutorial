@@ -82,10 +82,10 @@ export const authAPI = {
         }
     },
     logout() {
-        // if (evn === 'LOCAL') {
-        //     return axios.delete(baseUrlJava + `/auth/login`);
-        // } else {
+        if (evn === 'LOCAL') {
+            return axios.delete(baseUrlJava + `/auth/login`);
+        } else {
             return instance.delete(baseUrl + `/auth/login`);
-        // }
+        }
     }
 }
