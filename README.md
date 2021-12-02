@@ -7,6 +7,7 @@ Migrating from 3.4.x to 4.0.0
 npm install --save --save-exact react-scripts@4.0.0
 
 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
+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
 scurto@mail.ua
 Ustymenko1
 
