@@ -14,7 +14,4 @@ for login after add token
 login: scurto
 password: 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
 
-
-
-
 npm add redux-form
