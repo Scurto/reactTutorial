@@ -6,7 +6,7 @@ https://github.com/facebook/create-react-app/blob/main/CHANGELOG.md
 Migrating from 3.4.x to 4.0.0
 npm install --save --save-exact react-scripts@4.0.0
 
-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
+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
 scurto@mail.ua
 Ustymenko1
 
@@ -14,6 +14,6 @@ Ustymenko1
 
 for login after add token
 login: scurto
-password: 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
+password: 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
 
 npm add redux-form
