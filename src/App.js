@@ -1,7 +1,5 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
-// import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Navigation from './components/nav/Navigation';
 import {Route} from "react-router-dom";
@@ -30,9 +28,6 @@ class App extends React.Component {
             <div className="app-wrapper">
                 <HeaderContainer></HeaderContainer>
                 <Navigation/>
-                {/*<Route path='/profile/' component={Profile}/>*/}
-                {/*<Route exact path='/dialogs/' component={Dialogs}/>*/}
-                {/*<Route path='/dialogs/' component={Dialogs}/>*/}
 
                 <Route path='/dialogs/' render={
                     () => <DialogsContainer/>
