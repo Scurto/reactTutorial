@@ -15,14 +15,14 @@ const Posts = (props) => {
         );
     });
 
-    let onAddPostSubmit = (formData) => {
+    let onAddPost = (formData) => {
         props.addPost(formData.newPostBody)
     };
 
     return (
         <div className={css.content}>
             <h3>My Posts</h3>
-            <AddReduxPostForm onSubmit={ onAddPostSubmit }/>
+            <AddReduxPostForm onSubmit={ onAddPost }/>
             <div className={css.posts}>
                 {postsItem}
             </div>

@@ -15,7 +15,7 @@ const evn = 'LOCAL';
 
 export const usersAPI = {
     getUsers(currentPage, pageSize) {
-        return instance.get(baseUrl + `/users?page=${currentPage}&count=${pageSize}`)
+        return axios.get(baseUrlJava + `/users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data);
     },
 
