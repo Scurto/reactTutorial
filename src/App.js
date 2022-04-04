@@ -2,16 +2,14 @@ import React, {Suspense} from 'react';
 import './App.css';
 import Footer from './components/footer/Footer';
 import Navigation from './components/nav/Navigation';
-import {Route} from "react-router-dom";
-import Login from "./components/login/Login";
-// import DialogsContainer from "./components/dialogs/DialogsContainer";
-// import ProfileContainer from "./components/profile/ProfileContainer";
+import {Route, Switch} from "react-router-dom";
 import UsersContainer from "./components/users/UsersContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import LoginContainer from "./components/login/LoginContainer";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader";
+import News from "./components/news/News";
+import LoginContainer from "./components/login/LoginContainer";
 
 const DialogsContainer = React.lazy(() => import("./components/dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./components/profile/ProfileContainer"));
@@ -32,27 +30,15 @@ class App extends React.Component {
                 <HeaderContainer></HeaderContainer>
                 <Navigation/>
 
-                <Route path='/dialogs/' render={
-                    () => {
-                        return <Suspense fallback={<div>Loading...</div>}>
-                            <DialogsContainer/>
-                        </Suspense>
-                    }
-                }/>
-                <Route path='/profile/:userId?' render={
-                    () => {
-                    return <Suspense fallback={<div>Loading...</div>}>
-                        <ProfileContainer/>
-                    </Suspense>
-                }
-                }/>
-                <Route path='/users/' render={
-                    () => <UsersContainer/>
-                }/>
-                <Route path='/login' render={
-                    () => <LoginContainer/>
-                }/>
-                <Route path='/news/' component={Login}/>
+                <Suspense fallback={<Preloader />}>
+                    <Switch>
+                        <Route exact path='/dialogs' component={DialogsContainer} />
+                        <Route exact path='/profile/:userId?' component={ProfileContainer} />
+                        <Route exact path='/users' component={UsersContainer} />
+                        <Route exact path='/login' component={LoginContainer} />
+                        <Route exact path='/news' component={News} />
+                    </Switch>
+                </Suspense>
                 <Footer></Footer>
             </div>
         );

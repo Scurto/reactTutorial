@@ -62,6 +62,19 @@ export const profileAPI = {
         }
 
         // {"data":{},"messages":[],"fieldsErrors":[],"resultCode":0}
+    },
+    savePhoto(file) {
+        var formData = new FormData();
+        formData.append('file', file)
+        if (evn === 'LOCAL') {
+            return axios.put(baseUrlJava + `/profile/photo`, formData, {
+                headers : {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        } else {
+            return instance.put(baseUrl + `/profile/photo`, {});
+        }
     }
 }
 

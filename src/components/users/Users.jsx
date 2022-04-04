@@ -13,7 +13,7 @@ let Users = (props) => {
             props.users.map(u => <div key={u.id}>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : 'https://i.stack.imgur.com/nbSKY.png'}/>
+                            <img src={u.photos.small != null ? u.photos.small : 'https://i.stack.imgur.com/nbSKY.png'} className={css.mainPhoto}/>
                         </NavLink>
                     </div>
                     <div>

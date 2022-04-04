@@ -4,6 +4,7 @@ import {followSuccess, toggleIsFollowingInProgress} from "./usersReducer";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS';
 
 let initState = {
     posts: [
@@ -38,6 +39,15 @@ const profileReducer = (state = initState, action) => {
             stateCopy.status = action.status;
             return stateCopy;
         }
+        case SAVE_PHOTO_SUCCESS: {
+            let stateCopy = Object.assign({}, state);
+            let profileCopy = Object.assign({}, state.profile);
+            profileCopy.photos = action.photos;
+            stateCopy.profile = profileCopy;
+            // return {...state, profile: {...state.profile, photos: action.photos}};
+
+            return stateCopy;
+        }
         default: return state;
     }
 }
@@ -63,6 +73,13 @@ export const setStatus = (status) => {
     }
 }
 
+export const savePhotoSuccess = (photos) => {
+    return {
+        type: SAVE_PHOTO_SUCCESS,
+        photos: photos
+    }
+}
+
 export const getUserProfile = (userId) => async (dispatch) => {
     let response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
@@ -78,6 +95,13 @@ export const updateUserStatus = (status) => async (dispatch) => {
 
     if (response.data.resultCode === 0) {
         dispatch(setStatus(response.data.status));
+    }
+}
+
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await profileAPI.savePhoto(file);
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
     }
 }
 
