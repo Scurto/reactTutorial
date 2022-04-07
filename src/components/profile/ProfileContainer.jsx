@@ -43,9 +43,11 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        let isOwner = this.props.profile && (this.props.profile.userId === this.props.authorizedUserId);
+
         return (
             <div className={css.content}>
-                <Profile {...this.props} isOwner={!!this.props.authorizedUserId} profile={this.props.profile}
+                <Profile {...this.props} isOwner={isOwner} profile={this.props.profile}
                          status={ this.props.status } updateUserStatus={ this.props.updateUserStatus } savePhoto={this.props.savePhoto}/>
             </div>
         );
