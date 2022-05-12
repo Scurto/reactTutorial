@@ -7,3 +7,8 @@ Migrating from 3.4.x to 4.0.0
 npm install --save --save-exact react-scripts@4.0.0
 
 npm add redux-form
+
+add Typescript
+https://create-react-app.dev/docs/adding-typescript/
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+
